@@ -1,4 +1,4 @@
-"""Some math widget visualisation scripts from a different repo"""
+"""Some math widget visualisation scripts"""
 
 
 from fractions import Fraction
