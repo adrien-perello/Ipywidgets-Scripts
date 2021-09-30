@@ -189,6 +189,15 @@ class VectorSlider2D:
             attrs={"name": f"{self.name}-{other.name}"},
         )
 
+    def __mul__(self, A):
+        if not np.isscalar(A):
+            raise Exception(f"{A} is not a scalar")
+        return VectorSlider2D(
+            f"{self.name}x{str(A)}",
+            A * np.array(self.x_settings),
+            A * np.array(self.y_settings),
+        )
+
     def get_val(self):
         """Get val[i]"""
         return np.array([self.x.get_val(), self.y.get_val()])
