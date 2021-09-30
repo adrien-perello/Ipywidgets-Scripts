@@ -192,11 +192,14 @@ class VectorSlider2D:
     def __mul__(self, A):
         if not np.isscalar(A):
             raise Exception(f"{A} is not a scalar")
-        return VectorSlider2D(
-            f"{self.name}x{str(A)}",
-            A * np.array(self.x_settings),
-            A * np.array(self.y_settings),
-        )
+
+        name = f"{self.name}x{str(A)}"
+        x_settings = self.x_settings + (self.x.get_val(),)
+        y_settings = self.y_settings + (self.y.get_val(),)
+        return VectorSlider2D(name, A * np.array(x_settings), A * np.array(y_settings))
+
+    def __rmul__(self, A):
+        return self * A
 
     def get_val(self):
         """Get val[i]"""
